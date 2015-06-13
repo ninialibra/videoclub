@@ -1,0 +1,24 @@
+<ion-view view-title="Series TV">
+  <ion-content class="padding">
+
+    <div class="item item-input-inset">
+      <label class="item-input-wrapper">
+        <i class="icon ion-ios-search placeholder-icon"></i>
+        <input type="search" placeholder="Buscar por título" ng-model="buscar">
+      </label>
+      <button class="button button-small button-positive" ng-click=buscarSerie(buscar)>
+        Buscar
+      </button>
+    </div>
+
+    <ion-list>
+
+      <ion-item class="item item-thumbnail-left item-icon-right" ng-repeat="serie in series|orderBy:'name'" type="item-text-wrap" href="#/tab/fichaserie/{{serie.id}}">
+
+        <img src="http://image.tmdb.org/t/p/w500{{serie.poster_path}}">
+        <h2>{{serie.name}}</h2>
+        <i class="icon ion-chevron-right icon-accessory"></i>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>

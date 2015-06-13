@@ -1,0 +1,26 @@
+<ion-view view-title="Serie">
+  <ion-content class="padding">
+    <div class="list card">
+
+      <div class="item item-thumbnail-left">
+        <img src="http://image.tmdb.org/t/p/w500{{serie.poster_path}}">
+        <h2>{{serie.name}}</h2>
+        <p>{{generos}}</p>
+      </div>
+
+      <div class="item item-body">
+        <p class="text-justify">{{serie.overview}}</p>
+      </div>
+
+      <div class="list">
+
+        <a class="item" href="#/tab/episodios/{{serie.id}}/{{i}}" ng-repeat="i in temporadas">
+          Temporada {{i}}
+          <i class="icon ion-chevron-right icon-accessory"></i>
+        </a>
+
+      </div>
+
+    </div>
+  </ion-content>
+</ion-view>
