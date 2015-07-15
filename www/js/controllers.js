@@ -117,7 +117,8 @@ angular.module('videoclub.controllers', [])
       $scope.temporadas = aTemporadas;
 
     });
-}).controller('EpisodiosCtrl', function($scope, $stateParams, $http) {
+})
+.controller('EpisodiosCtrl', function($scope, $stateParams, $http) {
 
   var idSerie = $stateParams.idSerie
   var num_temporada = $stateParams.temp;
