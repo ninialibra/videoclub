@@ -12,12 +12,16 @@
         <p class="text-justify">{{pelicula.overview}}</p>
       </div>
 
-      <div class="item tabs tabs-secondary tabs-icon-left">
-        <a class="tab-item" href="#">
-          <i class="icon ion-plus-circled"></i>
-          Guardar
-        </a>
-      </div>
+      <ion-list>
+
+        <ion-item class="item item-avatar item-icon-right" ng-repeat="actor in actores|orderBy:'order'" type="item-text-wrap" href="#/tab/fichaactor/{{actor.id}}">
+          <img src="http://image.tmdb.org/t/p/w500{{actor.profile_path}}">
+          <h2>{{actor.name}}</h2>
+          <p>{{actor.character}}</p>
+          <i class="icon ion-chevron-right icon-accessory"></i>
+        </ion-item>
+
+      </ion-list>
 
     </div>
   </ion-content>

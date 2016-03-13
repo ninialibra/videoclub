@@ -1,0 +1,24 @@
+<ion-view view-title="Actores">
+  <ion-content class="padding">
+
+    <div class="item item-input-inset">
+      <label class="item-input-wrapper">
+        <i class="icon ion-ios-search placeholder-icon"></i>
+        <input type="search" placeholder="Buscar por nombre" ng-model="buscar">
+      </label>
+      <button class="button button-small button-positive" ng-click=buscarActor(buscar)>
+        Buscar
+      </button>
+    </div>
+
+    <ion-list>
+
+      <ion-item class="item item-avatar item-icon-right" ng-repeat="actor in actores|orderBy:'name'" type="item-text-wrap" href="#/tab/fichaactor/{{actor.id}}">
+
+        <img src="http://image.tmdb.org/t/p/w500{{actor.profile_path}}">
+        <h2>{{actor.name}}</h2>
+        <i class="icon ion-chevron-right icon-accessory"></i>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>

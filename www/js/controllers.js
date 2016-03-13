@@ -23,6 +23,7 @@ angular.module('videoclub.controllers', [])
 
 .controller('FichaPeliCtrl', function($scope, $stateParams, $http) {
 
+  //datos de la peli
   $http.get(getURL()+'movie/'+$stateParams.idPeli+'?language=es&api_key='+getAPIKey())
     .success(function(data, status, headers,config){
       console.log('Datos de la película '+$stateParams.idPeli+' obtenidos');
@@ -44,7 +45,19 @@ angular.module('videoclub.controllers', [])
 
       //para quitar la , final
       $scope.generos = generos.substr(0,(generos.length - 1));
+    });
 
+  //actores de la peli
+  $http.get(getURL()+'movie/'+$stateParams.idPeli+'/credits?language=es&api_key='+getAPIKey())
+    .success(function(data, status, headers,config){
+      console.log('Elenco de la película '+$stateParams.idPeli+' obtenido');
+      console.log(data);
+    })
+    .error(function(data, status, headers,config){
+      console.log('ERROR: no se han podido obtener los datos del elenco de la peli: '+$stateParams.idPeli);
+    })
+    .then(function(result){
+      $scope.actores = result.data.cast;
     });
 })
 
@@ -65,6 +78,53 @@ angular.module('videoclub.controllers', [])
       });
   };
 
+})
+
+.controller('ActoresCtrl', function($scope, $http) {
+
+  $scope.buscarActor = function(buscar){
+
+    $http.get(getURL()+'search/person?api_key='+getAPIKey()+'&query='+buscar+'&language=es')
+      .success(function(data, status, headers, config){
+        console.log('Datos de la busqueda con '+buscar+' obtenidos');
+        console.log(data);
+      })
+      .error(function(data, status, headers,config){
+        console.log('ERROR: no se han podido obtener los datos de la busqueda: '+buscar);
+      })
+      .then(function(result){
+        $scope.actores = result.data.results; //array del json donde estan los datos
+      });
+  };
+})
+
+.controller('FichaActorCtrl', function($scope, $stateParams, $http) {
+
+  //biografia del actor
+  $http.get(getURL()+'person/'+$stateParams.idActor+'?language=es&api_key='+getAPIKey())
+    .success(function(data, status, headers,config){
+      console.log('Datos del actor '+$stateParams.idActor+' obtenidos');
+      console.log(data);
+    })
+    .error(function(data, status, headers,config){
+      console.log('ERROR: no se han podido obtener los datos del actor: '+$stateParams.idActor);
+    })
+    .then(function(result){
+      $scope.actor = result.data;
+    });
+
+  //filmografia del actor
+  $http.get(getURL()+'person/'+$stateParams.idActor+'/credits?language=es&api_key='+getAPIKey())
+    .success(function(data, status, headers,config){
+      console.log('Películas del actor '+$stateParams.idActor+' obtenidas');
+      console.log(data);
+    })
+    .error(function(data, status, headers,config){
+      console.log('ERROR: no se han podido obtener los datos de las pelis del actor: '+$stateParams.idActor);
+    })
+    .then(function(result){
+      $scope.peliculas = result.data.cast;
+    });
 })
 
 .controller('SeriesCtrl', function($scope, $http) {
