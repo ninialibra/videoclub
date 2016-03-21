@@ -171,7 +171,7 @@ angular.module('videoclub.controllers', [])
 
       var aTemporadas=[];
       for(var t=1;t<=result.data.number_of_seasons;t++){
-        aTemporadas.push(t);
+        aTemporadas.push(result.data.seasons[t]);
       }
 
       $scope.temporadas = aTemporadas;

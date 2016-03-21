@@ -5,21 +5,26 @@
       <div class="item item-thumbnail-left">
         <img src="http://image.tmdb.org/t/p/w500{{serie.poster_path}}">
         <h2>{{serie.name}}</h2>
-        <p>{{generos}}</p>
+        <p>Género: {{generos}}</p>
+        <p>Estreno: {{serie.first_air_date|date:"dd/MM/yyyy"}}</p>
       </div>
 
       <div class="item item-body">
         <p class="text-justify">{{serie.overview}}</p>
       </div>
 
-      <div class="list">
+      <ion-list>
 
-        <a class="item" href="#/tab/episodios/{{serie.id}}/{{i}}" ng-repeat="i in temporadas">
-          Temporada {{i}}
+        <ion-item class="item item-avatar item-icon-right" ng-repeat="temporada in temporadas|orderBy:'season_number'" type="item-text-wrap" href="#/tab/episodios/{{serie.id}}/{{temporada.season_number}}">
+          <img src="http://image.tmdb.org/t/p/w500{{temporada.poster_path}}">
+          <h2>Temporada {{temporada.season_number}}</h2>
+          <p>Estreno: {{temporada.air_date|date:"dd/MM/yyyy"}}</p>
           <i class="icon ion-chevron-right icon-accessory"></i>
-        </a>
+        </ion-item>
 
-      </div>
+      </ion-list>
+
+
 
     </div>
   </ion-content>
