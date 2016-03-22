@@ -3,7 +3,7 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'videoclub', nombre de la app establecido en la etiqueta body
 // el resto de parametros son requires
-angular.module('videoclub', ['ionic', 'videoclub.controllers', 'videoclub.services'])
+angular.module('videoclub', ['ionic', 'videoclub.controllers'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -100,7 +100,25 @@ angular.module('videoclub', ['ionic', 'videoclub.controllers', 'videoclub.servic
         controller: 'EpisodiosCtrl'
       }
     }
-  });
+  })
+  .state('tab.actores', {
+      url: '/actores',
+      views: {
+        'tab-actores': {
+          templateUrl: 'templates/tab-actores.html',
+          controller: 'ActoresCtrl'
+        }
+      }
+    })
+    .state('tab.fichaactor', {
+        url: '/fichaactor/:idActor',
+        views: {
+          'tab-actores': {
+            templateUrl: 'templates/ficha-actor.html',
+            controller: 'FichaActorCtrl'
+          }
+        }
+      });
 
   //vista por defecto
   $urlRouterProvider.otherwise('/tab/cartelera');

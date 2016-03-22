@@ -6,11 +6,11 @@
     <ion-list>
 
       <ion-item class="item item-thumbnail-left item-icon-right" ng-repeat="episodio in episodios|orderBy:'episode_number'" type="item-text-wrap" href="#">
-
         <img src="http://image.tmdb.org/t/p/w500{{episodio.still_path}}">
         <h2>{{episodio.name}}</h2>
         <p>{{episodio.overview}}</p>
       </ion-item>
+      
     </ion-list>
   </ion-content>
 </ion-view>
