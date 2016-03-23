@@ -1,7 +1,6 @@
-angular.module('videoclub.controllers', []) 
+angular.module('videoclub.controllers', [])
 
 .controller('CarteleraCtrl', function($scope, $http) {
-
 
   $http.get(getURL()+'movie/now_playing?language=es&api_key='+getAPIKey())
     .success(function(data, status, headers,config){
@@ -192,10 +191,10 @@ angular.module('videoclub.controllers', [])
       console.log('ERROR: no se han podido obtener los datos de la serie: '+$stateParams.idSerie);
     })
     .then(function(result){
-      $scope.titulo = result.data.name+" T"+num_temporada;
+      $scope.serie = result.data;
     });
 
-  $http.get(getURL()+'tv/'+idSerie+'/season/'+num_temporada+'?api_key='+getAPIKey())
+  $http.get(getURL()+'tv/'+idSerie+'/season/'+num_temporada+'?language=es&api_key='+getAPIKey())
     .success(function(data, status, headers,config){
       console.log('Episodios de la temporada '+num_temporada+' de la serie '+idSerie+' obtenidos');
       console.log(data);
@@ -204,6 +203,7 @@ angular.module('videoclub.controllers', [])
       console.log('ERROR: no se han podido obtener los datos de la serie: '+$stateParams.idSerie);
     })
     .then(function(result){
+      $scope.temporada = result.data;
       $scope.episodios = result.data.episodes;
     });
 });
