@@ -1,4 +1,4 @@
-angular.module('videoclub.controllers', [])
+angular.module('videoclub.controllers', []) 
 
 .controller('CarteleraCtrl', function($scope, $http) {
 
