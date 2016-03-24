@@ -169,8 +169,14 @@ angular.module('videoclub.controllers', [])
       $scope.generos = generos.substr(0,(generos.length - 1));
 
       var aTemporadas=[];
-      for(var t=1;t<=result.data.number_of_seasons;t++){
-        aTemporadas.push(result.data.seasons[t]);
+      var num_temporadas = result.data.number_of_seasons;
+
+      if(num_temporadas==1){
+        aTemporadas.push(result.data.seasons[0]);
+      }else{
+        for(var t=1;t<=num_temporadas;t++){
+          aTemporadas.push(result.data.seasons[t]);
+        }
       }
 
       $scope.temporadas = aTemporadas;
