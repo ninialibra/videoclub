@@ -211,5 +211,6 @@ angular.module('videoclub.controllers', [])
     .then(function(result){
       $scope.temporada = result.data;
       $scope.episodios = result.data.episodes;
+      $scope.num_episodios = (result.data.episodes).length;
     });
 });
